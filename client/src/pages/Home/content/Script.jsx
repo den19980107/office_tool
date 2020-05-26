@@ -22,15 +22,32 @@ export default function Script() {
     const openApp = async (script) => {
         let contents = script.contents
         console.log(contents)
+
         for (let i = 0; i < contents.length; i++) {
-            openInNewTab(contents[i].url)
+            window.open(`/app/${btoa(contents[i].url)}`, "_blank");
         }
     }
 
-    function openInNewTab(url) {
-        var win = window.open(url, '_blank');
-        win.focus();
+    async function waitUntilClose(url) {
+        return await new Promise(resolve => {
+            let win = window.open("/app", "'_blank'");
+
+            let timer = setInterval(async function () {
+                if (win.closed) {
+                    clearInterval(timer);
+                    await delay(5000)
+                    resolve(true);
+                }
+            }, 500);
+        });
     }
+
+    const delay = (interval) => {
+        return new Promise((resolve) => {
+            setTimeout(resolve, interval);
+        });
+    };
+
     return (
         <div>
             <div style={{ display: "flex", justifyContent: "space-between" }}>

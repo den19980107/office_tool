@@ -9,6 +9,7 @@ import Home from "./pages/Home/Home";
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Document from './pages/Document/Document'
+import OpenApp from './pages/OpenApp/OpenApp';
 
 class AppRouter extends Component {
   state = {
@@ -54,6 +55,7 @@ class AppRouter extends Component {
           <Route path="/" component={MenuBar} />
           <Route path="/home" component={Home} />
           <Route exact path="/document" component={Document} />
+          <Route path="/app/:url" component={OpenApp}></Route>
         </UserProvider>
 
         <Route exact path="/login" component={Login} />
