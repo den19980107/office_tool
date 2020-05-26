@@ -9,32 +9,34 @@ import expressValidator from 'express-validator';
 import passport from 'passport';
 import path from 'path';
 import config from './config/default';
+import session from 'express-session';
 
 // import routes
 import authRoutes from './routes/auth-routes';
 import userRoutes from './routes/user';
+import scriptRoutes from './routes/script';
 
 const app = express();
 const port = process.env.PORT || 5000;
 
 let isMongodbConnected = false
 // connect to mongodb
-mongoose.connect(keys.MONGODB.MONGODB_URI, (err) => {
-  if (err) {
-    isMongodbConnected = false
-    console.log(err)
-  } else {
-    isMongodbConnected = true
-    console.log("connected to mongo db");
-  }
+mongoose.connect(keys.MONGODB.MONGODB_URI, { useNewUrlParser: true }, (err) => {
+    if (err) {
+        isMongodbConnected = false
+        console.log(err)
+    } else {
+        isMongodbConnected = true
+        console.log("connected to mongo db");
+    }
 });
 
 app.use(
-  cookieSession({
-    name: "session",
-    keys: [keys.SESSION.COOKIE_KEY],
-    maxAge: 24 * 60 * 60 * 100
-  })
+    cookieSession({
+        name: "session",
+        keys: [keys.SESSION.COOKIE_KEY],
+        maxAge: 24 * 60 * 60 * 100
+    })
 );
 
 // middleware
@@ -46,6 +48,7 @@ app.use(expressValidator())
 app.use(bodyParser.json({ limit: '50mb' }));
 
 // initalize passport
+app.use(session());
 app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport-setup')(passport)
@@ -53,26 +56,27 @@ require('./config/passport-setup')(passport)
 
 // set up cors to allow us to accept requests from our client
 app.use(
-  cors({
-    origin: "http://localhost:3000", // allow to server to accept request from different origin
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true // allow session cookie from browser to pass through
-  })
+    cors({
+        origin: "http://localhost:3000", // allow to server to accept request from different origin
+        methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+        credentials: true // allow session cookie from browser to pass through
+    })
 );
 
 // set up routes
 app.use("/api/auth", authRoutes);
 app.use('/api/user', userRoutes);
+app.use("/api/script", scriptRoutes)
 
 if (config.mode == 'production') {
-  app.use(express.static('client/build'))
-  app.get('/*', function (req, res) {
-    if (isMongodbConnected) {
-      res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-    } else {
-      res.send("資料庫連線錯誤")
-    }
-  })
+    app.use(express.static('client/build'))
+    app.get('/*', function (req, res) {
+        if (isMongodbConnected) {
+            res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+        } else {
+            res.send("資料庫連線錯誤")
+        }
+    })
 }
 // connect react to nodejs express server
 app.listen(port, () => console.log(`Server is running on port ${port}!`));

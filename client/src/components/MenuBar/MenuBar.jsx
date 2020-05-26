@@ -22,7 +22,7 @@ const MenuBar = () => {
             <Nav className="mr-auto">
                {isLogin &&
                   <React.Fragment>
-                     <Nav.Link onClick={() => history.push('/')}>首頁</Nav.Link>
+                     <Nav.Link onClick={() => history.push('/home')}>首頁</Nav.Link>
                      <Nav.Link onClick={() => history.push('/document')}>文件</Nav.Link>
                   </React.Fragment>
                }
@@ -40,8 +40,8 @@ const MenuBar = () => {
                   </Nav>
                   :
                   <Nav>
-                     <Nav.Link><Link to="/login" >登入</Link></Nav.Link>
-                     <Nav.Link><Link to="/register">註冊</Link></Nav.Link>
+                     <Nav.Link onClick={() => history.push("/login")}>登入</Nav.Link>
+                     <Nav.Link onClick={() => history.push("/register")}>註冊</Nav.Link>
                   </Nav>
                }
             </Form>

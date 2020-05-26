@@ -1,8 +1,36 @@
-import React from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Button from '@material-ui/core/Button';
 import history from '../../../history';
+import axios from 'axios';
+import config from '../../../config/default';
+import UserProvider from '../../../context/UserProvider';
 
 export default function Script() {
+    const [scripts, setScripts] = useState([]);
+    const user = useContext(UserProvider.context);
+    useEffect(() => {
+
+        getScriptData();
+
+    }, [])
+
+    const getScriptData = async () => {
+        let res = await axios.get(`/api/script/user`);
+        setScripts(res.data.data)
+    }
+
+    const openApp = async (script) => {
+        let contents = script.contents
+        console.log(contents)
+        for (let i = 0; i < contents.length; i++) {
+            openInNewTab(contents[i].url)
+        }
+    }
+
+    function openInNewTab(url) {
+        var win = window.open(url, '_blank');
+        win.focus();
+    }
     return (
         <div>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -13,17 +41,11 @@ export default function Script() {
                     </Button>
                 </div>
             </div>
-            <ScriptButton name="script-1"></ScriptButton>
-        </div>
-    )
-}
-
-const ScriptButton = ({ name }) => {
-    return (
-        <div style={{ width: "12rem", height: "6rem", background: "#5E5A5A", borderRadius: "1rem", display: "flex", justifyContent: "center", flexDirection: "column" }}>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-                <h2 style={{ padding: "0", margin: "0", color: "white" }}>{name}</h2>
-            </div>
+            {scripts.map((script, idx) => (
+                <Button key={idx} variant="contained" color="primary" style={{ fontSize: "35px", margin: "0 1rem 1rem 0" }} onClick={() => openApp(script)}>
+                    {script.name}
+                </Button>
+            ))}
         </div>
     )
 }

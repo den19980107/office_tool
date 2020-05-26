@@ -1,5 +1,5 @@
 type application = {
-    appicationId: string,
+    applicationId: string,
     name: string,
     icon: string,
     openUrl: string
@@ -8,29 +8,40 @@ type application = {
 
 const applications: Array<application> = [
     {
-        appicationId: "vscode",
-        name: "vscode",
-        icon: "",
+        applicationId: "vscode",
+        name: "Visual Studio Code",
+        icon: "http://shrinklink.ga/sBia99Wgz",
         openUrl: "vscode://file"
     },
     {
-        appicationId: "word",
-        name: "word",
-        icon: "",
+        applicationId: "word",
+        name: "MicroSoft Word",
+        icon: "http://shrinklink.ga/AUYxLBDtp",
         openUrl: "ms-word:ofv|u|file://"
     },
     {
-        appicationId: "powerpoint",
-        name: "powerpoint",
-        icon: "",
+        applicationId: "powerpoint",
+        name: "MicroSoft PowerPoint",
+        icon: "http://shrinklink.ga/1Z0pG8qmh",
         openUrl: "ms-powerpoint:ofv|u|file://"
     },
     {
-        appicationId: "excel",
-        name: "excel",
-        icon: "",
+        applicationId: "excel",
+        name: "MicroSoft Excel",
+        icon: "http://shrinklink.ga/1Vok-VWAw",
         openUrl: "ms-excel:ofv|u|file://"
-
+    },
+    {
+        applicationId: "postman",
+        name: "Postman",
+        icon: "http://shrinklink.ga/yY1RUw3Rm",
+        openUrl: "postman:"
+    },
+    {
+        applicationId: "line",
+        name: "Line",
+        icon: "http://shrinklink.ga/Gc-OifP7I",
+        openUrl: "line:"
     }
 ]
 

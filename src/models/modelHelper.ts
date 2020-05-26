@@ -19,6 +19,7 @@ export class modelHelper {
          })
       } catch (err) {
          console.log("create error in modelHelper err = ", err)
+         throw err
       }
    }
    static async deleteById(id: string, model: Model<any>): Promise<boolean> {
@@ -35,6 +36,7 @@ export class modelHelper {
          })
       } catch (err) {
          console.log("delete error in modelHelper err = ", err)
+         throw err
       }
    }
    static async update(id: string, keysValue: object, model: Model<any>): Promise<boolean> {
@@ -71,6 +73,8 @@ export class modelHelper {
          })
       } catch (err) {
          console.log("getById error in modelHelper err = " + err);
+         throw err
+
       }
    }
 
@@ -87,6 +91,8 @@ export class modelHelper {
          })
       } catch (err) {
          console.log("getById error in modelHelper err = " + err);
+         throw err
+
       }
    }
 }
