@@ -49,9 +49,9 @@ const Login = ({ isLogin }) => {
    return (
       <div class="container" style={{ display: "flex", justifyContent: "center" }}>
          <div style={{ width: "500px", marginTop: "2rem" }}>
-            <Card>
+            <Card bg="dark" text="white">
                <Card.Header>
-                  <h3>登入</h3>
+                  <h3 style={{ color: "white" }}>登入</h3>
                </Card.Header>
                <Card.Body>
                   <Form>
