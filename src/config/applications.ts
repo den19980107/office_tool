@@ -38,11 +38,15 @@ const applications: Array<application> = [
         openUrl: "postman:"
     },
     {
+        // line url api 
+        // https://developers.line.biz/en/docs/messaging-api/using-line-url-scheme/#if-the-user-hasn-t-installed-line
         applicationId: "line",
         name: "Line",
         icon: "http://shrinklink.ga/Gc-OifP7I",
-        openUrl: "line:"
+        openUrl: "line://line.me/R/nv/chat" // default open chat
     }
+    // sourcetree
+    // open url sourcetree://cloneRepo/<CLONE_URL>
 ]
 
 
