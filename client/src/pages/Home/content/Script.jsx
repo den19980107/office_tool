@@ -24,7 +24,7 @@ export default function Script() {
         console.log(contents)
 
         for (let i = 0; i < contents.length; i++) {
-            window.open(`/app/${btoa(contents[i].url)}`, "_blank");
+            window.open(`/${btoa(contents[i].url)}`, "_blank");
         }
     }
 

@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import _ from "lodash";
 import history from '../../history'
-import { Link } from 'react-router-dom'
 import UserProvider from '../../context/UserProvider';
 import config from '../../config/default';
 import './MenuBar.css'
@@ -10,7 +9,7 @@ import { Navbar, Nav, NavDropdown, Form } from 'react-bootstrap'
 import { Avatar } from 'antd';
 console.log("config = ", config)
 
-const MenuBar = () => {
+const MenuBar = ({ props }) => {
    const user = useContext(UserProvider.context);
    const isLogin = !_.isEmpty(user) ? true : false;
 
@@ -22,8 +21,8 @@ const MenuBar = () => {
             <Nav className="mr-auto">
                {isLogin &&
                   <React.Fragment>
-                     <Nav.Link onClick={() => history.push('/home')}>首頁</Nav.Link>
-                     <Nav.Link onClick={() => history.push('/document')}>文件</Nav.Link>
+                     <Nav.Link onClick={() => history.push("/home")}>首頁</Nav.Link>
+                     <Nav.Link onClick={() => history.push("/document")}>文件</Nav.Link>
                   </React.Fragment>
                }
             </Nav>
@@ -32,7 +31,7 @@ const MenuBar = () => {
                   <Nav>
                      <Avatar src={user.avatarsUrl} />
                      <NavDropdown title={user.displayName} style={{ marginRight: "1rem" }} id="nav-dropdown" >
-                        <NavDropdown.Item><Link style={{ color: "black" }} to="/profile">個人資料</Link></NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => history.push("/profile")}>個人資料</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href={`${config.serverUrl}/api/auth/logout`} style={{ color: "black" }}>登出</NavDropdown.Item>
                      </NavDropdown>

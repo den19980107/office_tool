@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import Navigator from './navigator';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import history from '../../history';
@@ -24,12 +24,12 @@ const Home = ({ location }) => {
           <Navigator></Navigator>
         </div>
         <div style={{ padding: "1rem", background: "#212121", width: "100%" }}>
-          <Router history={history}>
+          <Switch>
             <Route exact path="/home/script" component={Script} />
             <Route exact path="/home/script/create" component={CreateScript} />
             <Route exact path="/home/note" component={Note} />
             <Route exact path="/home/Todo" component={Todo} />
-          </Router>
+          </Switch>
         </div>
       </div>
     </ThemeProvider>

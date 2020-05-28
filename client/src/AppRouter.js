@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Router, Route } from "react-router-dom";
+import { Router, Route, HashRouter, Switch, BrowserRouter } from "react-router-dom";
 import UserProvider from "./context/UserProvider";
 import history from "./history";
 
@@ -46,20 +46,16 @@ class AppRouter extends Component {
 
     return (
       <Router history={history}>
-        {/* <UserProvider>
-          <Route path="/" component={MenuBar} />
-          <PrivateRoute authed={this.state.isLogin} exact path='/' component={Home} />
-          <PrivateRoute authed={this.state.isLogin} exact path='/class' component={Class} />
-        </UserProvider> */}
         <UserProvider>
           <Route path="/" component={MenuBar} />
           <Route path="/home" component={Home} />
           <Route exact path="/document" component={Document} />
-          <Route path="/app/:url" component={OpenApp}></Route>
         </UserProvider>
-
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
+        <Switch>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route path="/:url" component={OpenApp}></Route>
+        </Switch>
       </Router>
     )
   }

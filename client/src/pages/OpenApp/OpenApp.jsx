@@ -1,16 +1,29 @@
 import React from 'react'
 import { useEffect } from 'react'
-import history from '../../history'
-
+import axios from 'axios'
+import { useState } from 'react'
 export default function OpenApp({ match }) {
-    const url = atob(match.url.replace("/app/", ""))
+    const url = atob(match.url.replace("/", ""))
+    const [isMatch, setIsMatch] = useState(false)
     useEffect(() => {
         openApp()
     }, [])
 
+    const getScriptList = async () => {
+        let applications = await (await axios.get(`/api/script/applications`)).data.data
+        return applications
+    }
+
     const openApp = async () => {
-        await waitUntilClose(url)
-        window.close();
+        let applications = await getScriptList();
+        for (let i = 0; i < applications.length; i++) {
+            if (url.startsWith(applications[i].applicationId)) {
+                setIsMatch(true)
+                await waitUntilClose(url)
+                window.close();
+                break;
+            }
+        }
     }
 
     async function waitUntilClose(url) {
@@ -26,7 +39,7 @@ export default function OpenApp({ match }) {
     }
     return (
         <div>
-            {url}
+            {isMatch ? url : <h1>url 錯誤！</h1>}
         </div>
     )
 }
