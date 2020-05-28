@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 export default function OpenApp({ match }) {
-    const url = atob(match.url.replace("/", ""))
+    const url = match.url;
     const [isMatch, setIsMatch] = useState(false)
     useEffect(() => {
         openApp()
@@ -27,6 +27,7 @@ export default function OpenApp({ match }) {
     }
 
     async function waitUntilClose(url) {
+        url = atob(url.replace("/", ""))
         return await new Promise(resolve => {
             let win = window.open(url, "_blank");
             let timer = setInterval(async function () {
