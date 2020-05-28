@@ -46,13 +46,12 @@ class AppRouter extends Component {
 
     return (
       <Router history={history}>
-        <UserProvider>
-          <Route path="/" component={MenuBar} />
-          <Route path="/home" component={Home} />
-          <Route exact path="/document" component={Document} />
-        </UserProvider>
-
         <Switch>
+          <UserProvider>
+            <Route path="/" component={MenuBar} />
+            <Route path="/home" component={Home} />
+            <Route exact path="/document" component={Document} />
+          </UserProvider>
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route path="/:url" component={OpenApp}></Route>
