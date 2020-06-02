@@ -1,39 +1,39 @@
-pre{
+#markdwon > pre{
    background: #39393A;
    color: #ddd;
    padding: 1rem;
 }
 
 
-table{
+#markdwon > table{
    border: 0.5px solid #ccc;
 }
 
-tr{
-   border: 0.5px solid #ccc;
-   padding: 1rem;
-}
-
-th ,td{
+#markdwon > tr{
    border: 0.5px solid #ccc;
    padding: 1rem;
 }
 
-P{
+#markdwon > th ,td{
+   border: 0.5px solid #ccc;
+   padding: 1rem;
+}
+
+#markdwon > P{
    white-space: pre;
 }
-p,li{
+#markdwon > p,li{
    font-size: 20px;
 }
 
-*{
+#markdwon > *{
    color:white
 }
 
-h1,h2,h3,h4,h5,h6 {
+#markdwon > h1,h2,h3,h4,h5,h6 {
    color:white;
 }
 
-img{
+#markdwon > img{
    width: 100%;
 }

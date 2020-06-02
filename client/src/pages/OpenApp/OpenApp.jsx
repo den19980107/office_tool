@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 export default function OpenApp({ match }) {
-    const url = match.url;
+    let url = match.url;
     const [isMatch, setIsMatch] = useState(false)
     useEffect(() => {
         openApp()
@@ -16,6 +16,11 @@ export default function OpenApp({ match }) {
 
     const openApp = async () => {
         let applications = await getScriptList();
+        try {
+            url = atob(url.replace("/", ""))
+        } catch (err) {
+            console.log(err)
+        }
         for (let i = 0; i < applications.length; i++) {
             if (url.startsWith(applications[i].applicationId)) {
                 setIsMatch(true)
@@ -27,7 +32,6 @@ export default function OpenApp({ match }) {
     }
 
     async function waitUntilClose(url) {
-        url = atob(url.replace("/", ""))
         return await new Promise(resolve => {
             let win = window.open(url, "_blank");
             let timer = setInterval(async function () {
@@ -40,7 +44,7 @@ export default function OpenApp({ match }) {
     }
     return (
         <div>
-            {isMatch ? url : <h1>url 錯誤！</h1>}
+            {isMatch ? url : ""}
         </div>
     )
 }

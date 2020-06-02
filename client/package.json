@@ -16,10 +16,12 @@
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-bootstrap": "^1.0.0-beta.16",
+    "react-contenteditable": "^3.3.4",
     "react-dom": "^16.7.0",
     "react-markdown": "^4.3.1",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "^3.3.0"
+    "react-scripts": "^3.3.0",
+    "rich-markdown-editor": "^10.0.3"
   },
   "scripts": {
     "start": "react-scripts start",

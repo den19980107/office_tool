@@ -15,6 +15,7 @@ import session from 'express-session';
 import authRoutes from './routes/auth-routes';
 import userRoutes from './routes/user';
 import scriptRoutes from './routes/script';
+import noteRoutes from './routes/note';
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -67,6 +68,8 @@ app.use(
 app.use("/api/auth", authRoutes);
 app.use('/api/user', userRoutes);
 app.use("/api/script", scriptRoutes)
+app.use("/api/note", noteRoutes)
+
 
 if (config.mode == 'production') {
     app.use(express.static('client/build'))
