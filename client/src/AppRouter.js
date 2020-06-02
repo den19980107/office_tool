@@ -51,11 +51,11 @@ class AppRouter extends Component {
           <Route path="/home" component={Home} />
           <Route exact path="/document" component={Document} />
         </UserProvider>
-        <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route path="/:url" component={OpenApp}></Route>
-        </Switch>
+
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        <Route path="/:url" component={OpenApp}></Route>
+
       </Router>
     )
   }
