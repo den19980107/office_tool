@@ -8,6 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import CreateIcon from '@material-ui/icons/Create';
 import DescriptionIcon from '@material-ui/icons/Description';
+import AccessAlarmsIcon from '@material-ui/icons/AccessAlarms';
 import history from '../../history';
 
 
@@ -72,6 +73,16 @@ export default function Navigator() {
                     <CreateIcon />
                 </ListItemIcon>
                 <ListItemText primary="筆記" />
+            </ListItem>
+            <ListItem
+                button
+                onClick={() => handleChangeTab(4, "workingHourCalculator")}
+                selected={selectedIndex === 4}
+            >
+                <ListItemIcon>
+                    <AccessAlarmsIcon />
+                </ListItemIcon>
+                <ListItemText primary="工時計算" />
             </ListItem>
         </List>
 

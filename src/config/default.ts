@@ -4,8 +4,8 @@ if (mode == 'development') {
     serverUrl = "http://localhost:5000"
     clientUrl = "http://localhost:3000"
 } else if (mode == "production") {
-    serverUrl = "http://shrinklink.ga"
-    clientUrl = "http://shrinklink.ga"
+    serverUrl = "http://localhost:5000"
+    clientUrl = "http://localhost:5000"
 }
 
 type config = {

@@ -6,6 +6,7 @@ import history from '../../history';
 import Script from './content/Script';
 import Note from './content/Note';
 import Todo from './content/Todo';
+import ＷorkingHourCalculator from './content/ＷorkingHourCalculator'
 import CreateScript from './content/CreateScript';
 const Home = ({ location }) => {
   const theme = React.useMemo(
@@ -29,6 +30,7 @@ const Home = ({ location }) => {
             <Route exact path="/home/script/create" component={CreateScript} />
             <Route exact path="/home/note" component={Note} />
             <Route exact path="/home/Todo" component={Todo} />
+            <Route exact path="/home/workingHourCalculator" component={ＷorkingHourCalculator} />
           </Switch>
         </div>
       </div>
